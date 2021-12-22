@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eindopdracht interaction design</title>
+    <meta name="description" content="This is my HTML5 boilerplate.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://mct.be/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/screen.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="script/app.js"></script>
+    <script src="script/dashboard-chart.js"></script>
+</head>
+
+<body>
+    <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <symbol id="c-icon_small-down" viewBox="0 0 32 32">
+                <title>icon_small-down</title>
+                <path d="M16 26.182l-16-16.172 4.148-4.192 11.852 11.98 11.852-11.98 4.148 4.192z"></path>
+            </symbol>
+
+        </defs>
+    </svg>
+    <div class="c-app">
+        <div class="c-app__logo">
+            <h1 class="c-logo">
+               Data used from worldbank.org
+            </h1>
+        </div>
+        <div class="c-app__main">
+            <div class="o-row">
+                <div class="o-container">
+                    <h4>
+                       Last updated : 2021-12-16
+                    </h4>
+                    <div class="c-dashboard">
+                        <div class="c-dashboard__item">
+                            <div class="c-card">
+                                <div class="c-card__header">
+                                    <h2 class="c-card__title">Population Growth</h2>
+                                    <ul class="o-list c-interval-switcher">
+                                        <li class="c-interval-switcher__item">
+                                            <input class="o-hide-accessible c-interval-switcher__radio" type="radio"
+                                                name="interval-switch" id="day" checked>
+                                            <label class="c-interval-switcher__label" for="day">5 years</label>
+                                        </li>
+                                        <li class="c-interval-switcher__item">
+                                            <input class="o-hide-accessible c-interval-switcher__radio" type="radio"
+                                                name="interval-switch" id="week">
+                                            <label class="c-interval-switcher__label" for="week">20 years</label>
+                                        </li>
+                                        <li class="c-interval-switcher__item">
+                                            <input class="o-hide-accessible c-interval-switcher__radio" type="radio"
+                                                name="interval-switch" id="month">
+                                            <label class="c-interval-switcher__label" for="month">40 years</label>
+                                        </li>
+                                        <li class="c-interval-switcher__item">
+                                            <input class="o-hide-accessible c-interval-switcher__radio" type="radio"
+                                                name="interval-switch" id="year">
+                                            <label class="c-interval-switcher__label" for="year">60 years</label>
+                                        </li>
+                                    </ul>
+                                    <span class="c-custom-select">
+                                        <select class="c-input c-custom-select__input js-country-select" name="select1"
+                                            id="select1">
+                                            <option value="maandag">CHN</option>
+                                            <option value="dinsdag">IND</option>
+                                            <option value="woensdag">USA</option>
+                                        </select>
+                                        <svg class="c-custom-select__symbol">
+                                            <use xlink:href="#c-icon_small-down"></use>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="c-card__body">
+                                    <canvas class="js-graph" width="3" height="1"></canvas>
+                                    <aside class="c-load-container js-load-container">
+                                        <!-- <svg class="c-loader js-loader" viewbox="0 0 50 50">
+                                            <circle class="c-loader__circle"></circle>
+                                        </svg> -->
+                                    </aside>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
