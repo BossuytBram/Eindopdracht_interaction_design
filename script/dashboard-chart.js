@@ -12,7 +12,7 @@ const drawChart = (data) => {
   let Real_USA_numbers = USA_numbers.reverse();
   let IND_numbers = [1380004385, 1366417756, 1352642283, 1338676779, 1324517250, 1310152392, 1295600768, 1280842119, 1265780243, 1250287939, 1234281163, 1217726217, 1200669762, 1183209471, 1165486291, 1147609924, 1129623466, 1111523146, 1093317187, 1075000094, 1056575548, 1038058154, 1019483586, 1000900028, 982365248, 963922586, 945601828, 927403866, 909307018, 891273202, 873277799, 855334675, 837468938, 819682095, 801975250, 784360012, 766833411, 749428958, 732239498, 715384997, 698952837, 682995348, 667499815, 652408766, 637630085, 623102900, 608802595, 594770136, 581087255, 567868021, 555189797, 543084333, 531513834, 520400577, 509631509, 499123328, 488848139, 478825602, 469077191, 459642166];
   let Real_IND_numbers = IND_numbers.reverse();
-  number = 60;
+  number = 20;
   if (number == 5) {
     Labels = Fiveyears;
   } else if (number == 20) {
@@ -22,7 +22,15 @@ const drawChart = (data) => {
   } else if (number == 60) {
     Labels = SixtyYears;
   }
-
+  let Data;
+  let countryID = 'USA';
+  if ((countryID == 'CHN')) {
+     Data = Real_CHN_numbers;
+  } else if ((countryID == 'USA')) {
+    Data = Real_USA_numbers;
+  } else if ((countryID == 'IND ')) {
+    Data = Real_IND_numbers;
+  }
   new Chart(ctx, {
     type: 'line',
     data: {
@@ -30,7 +38,7 @@ const drawChart = (data) => {
       datasets: [
         {
           label: 'Population Count',
-          data: Real_CHN_numbers,
+          data: Data,
           borderColor: '#3B86FF',
           backgroundColor: '#3B86FF10',
           pointBackgroundColor: 'white',
@@ -46,7 +54,7 @@ const drawChart = (data) => {
         yAxes: [
           {
             ticks: {
-              min: 200000000,
+              min: 100000000,
               max: 1500000000,
             },
           },
