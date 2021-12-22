@@ -695,8 +695,10 @@ input::placeholder {
 /* interval switcher */
 
 .c-interval-switcher {
-    display: flex;
+    display: grid;
     margin: 0;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
 }
 
 .c-interval-switcher__label {
