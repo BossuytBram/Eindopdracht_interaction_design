@@ -1,6 +1,9 @@
 let CountrySelect, graph, canvas, loaderContainer, loaderDelay, loader;
+var number,Data,countryID,Labels;
+// var number = 60;
+// var countryID = 'IND';
 
-const drawChart = (data) => {
+const drawChart = (number,countryID) => {
   let ctx = graph.getContext('2d');
   let Fiveyears = ['2016', '2017', '2018', '2019', '2020'];
   let TwentyYears = ['2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'];
@@ -12,7 +15,7 @@ const drawChart = (data) => {
   let Real_USA_numbers = USA_numbers.reverse();
   let IND_numbers = [1380004385, 1366417756, 1352642283, 1338676779, 1324517250, 1310152392, 1295600768, 1280842119, 1265780243, 1250287939, 1234281163, 1217726217, 1200669762, 1183209471, 1165486291, 1147609924, 1129623466, 1111523146, 1093317187, 1075000094, 1056575548, 1038058154, 1019483586, 1000900028, 982365248, 963922586, 945601828, 927403866, 909307018, 891273202, 873277799, 855334675, 837468938, 819682095, 801975250, 784360012, 766833411, 749428958, 732239498, 715384997, 698952837, 682995348, 667499815, 652408766, 637630085, 623102900, 608802595, 594770136, 581087255, 567868021, 555189797, 543084333, 531513834, 520400577, 509631509, 499123328, 488848139, 478825602, 469077191, 459642166];
   let Real_IND_numbers = IND_numbers.reverse();
-  number = 20;
+  
   if (number == 5) {
     Labels = Fiveyears;
   } else if (number == 20) {
@@ -23,12 +26,12 @@ const drawChart = (data) => {
     Labels = SixtyYears;
   }
   let Data;
-  let countryID = 'USA';
+  
   if ((countryID == 'CHN')) {
      Data = Real_CHN_numbers;
   } else if ((countryID == 'USA')) {
     Data = Real_USA_numbers;
-  } else if ((countryID == 'IND ')) {
+  } else if ((countryID == 'IND')) {
     Data = Real_IND_numbers;
   }
   new Chart(ctx, {
@@ -78,42 +81,45 @@ const drawChart = (data) => {
   });
 };
 
-const getData = (json) => {
-  let data = [];
+// const getData = (json) => {
+//   let data = [];
 
-  json.map((country) => {
-    data.push(country.value);
-  });
+//   json.map((country) => {
+//     data.push(country.value);
+//   });
 
-  drawChart(data);
-};
+//   drawChart(data);
+// };
 
-const getPopulationByYear = (country) => {
-  const endpoint = `http://api.worldbank.org/v2/countries/${country}/indicators/SP.POP.TOTL?per_page=5000&format=json`;
-  // const endpoint = `http://api.worldbank.org/v2/countries/IND/indicators/SP.POP.TOTL?per_page=5000&format=json`
-  fetch(endpoint)
-    .then((r) => r.json())
-    .then((json) => {
-      getData(json);
-    })
-    .catch((e) => console.error(e));
-};
+// const getPopulationByYear = (country) => {
+//   const endpoint = `http://api.worldbank.org/v2/countries/${country}/indicators/SP.POP.TOTL?per_page=5000&format=json`;
+//   // const endpoint = `http://api.worldbank.org/v2/countries/IND/indicators/SP.POP.TOTL?per_page=5000&format=json`
+//   fetch(endpoint)
+//     .then((r) => r.json())
+//     .then((json) => {
+//       getData(json);
+//     })
+//     .catch((e) => console.error(e));
+// };
 
 const init = () => {
   CountrySelect = document.querySelector('.js-country-select');
   graph = document.querySelector('.js-graph');
 
-  CountrySelect.addEventListener('change', function (e) {
-    getPopulationByYear(e.target.value);
-  });
+ document.getElementById("5").addEventListener("click", function(){ drawChart(5, "CHN"); });
+ document.getElementById("20").addEventListener("click", function(){ drawChart(20, "CHN"); });
+ document.getElementById("40").addEventListener("click", function(){ drawChart(40, "CHN"); });
+ document.getElementById("60").addEventListener("click", function(){ drawChart(60, "CHN"); });
   TimeSelect = document.querySelector('c-interval-switcher__item');
 
   canvas = document.querySelector('.js-graph');
   loaderContainer = document.querySelector('.js-load-container');
 
-  getPopulationByYear('CHN');
+  // getPopulationByYear('CHN');
 };
 
 document.addEventListener('DOMContentLoaded', function () {
   init();
+  console.log("loaded")
+  drawChart(5,"CHN");
 });
